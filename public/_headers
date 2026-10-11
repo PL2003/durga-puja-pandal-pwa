@@ -1,0 +1,23 @@
+# Security + caching headers (Netlify & Cloudflare Pages read this file from the publish root).
+# If you only deploy to Vercel, see vercel.json instead.
+
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+  Service-Worker-Allowed: /
+  Content-Type: application/javascript
+
+/manifest.webmanifest
+  Content-Type: application/manifest+json
+  Cache-Control: public, max-age=3600
+
+/icons/*
+  Cache-Control: public, max-age=604800, immutable
+
+/img/*
+  Cache-Control: public, max-age=604800, immutable
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(self)
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' blob:; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://*.basemaps.cartocdn.com https://*.tile.openstreetmap.org https://*.googleusercontent.com https://*.ggpht.com; connect-src 'self' https://docs.google.com https://sheets.googleapis.com https://*.basemaps.cartocdn.com https://router.project-osrm.org
